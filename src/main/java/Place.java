@@ -1,13 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Hp
- */
+package airmanagement;
 
 import java.util.*;
 
@@ -43,5 +34,22 @@ public class Place {
         }
 
         return data;
+    }
+
+    public String checkLevels() {
+        double aqi = 0;
+        for(Sensor sensor: this.sensors) {
+            if(sensor.type=="temp" || sensor.type=="hum") {
+                continue;
+            }
+            aqi += sensor.getRelativeValue();
+        }
+        aqi = aqi/4;
+        aqi = aqi*129;
+        if(aqi < 25) return "Very Low";
+        else if(aqi < 50) return "Low";
+        else if(aqi < 75) return "Medium";
+        else if(aqi < 100) return "High";
+        else return "Very High";
     }
 }

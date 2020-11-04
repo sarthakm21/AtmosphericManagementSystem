@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package airmanagement;
 
-/**
- *
- * @author Hp
- */
 import java.util.Random;
 
 public class Sensor {
@@ -37,6 +29,15 @@ public class Sensor {
     public int getData() {
         this.data = generateRandom();
         return this.data;
+    }
+
+    public double getRelativeValue() {
+        double value = 0;
+        if(this.type=="no2") value = (double)this.data/600;
+        else if(this.type=="pm10") value = (double)this.data/200;
+        else if(this.type=="o3") value = (double)this.data/300;
+        else if(this.type=="pm2.5") value = (double)this.data/150;
+        return value;
     }
 
     public int generateRandom() {

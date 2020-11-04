@@ -1,13 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Hp
- */
+package airmanagement;
 
 import java.util.*;
 import java.time.LocalDateTime;
@@ -37,5 +28,13 @@ public class CentralManager {
 
     public Map<LocalDateTime, Map<String, Map<String, Integer>>> getLogs() {
         return this.logData;
+    }
+
+    public Map<String, String> checkLevels() {
+        Map<String, String> data = new HashMap<String, String>();
+        for(Place place: this.places) {
+            data.put(place.name, place.checkLevels());
+        }
+        return data;
     }
 }
