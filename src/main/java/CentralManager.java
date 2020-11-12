@@ -32,8 +32,16 @@ public class CentralManager {
         return places;
     }
 
-    public Map<LocalDateTime, Map<String, Map<String, Integer>>> getLogs() {
-        return this.logData;
+    public Map<LocalDateTime, Map<String, Map<String, Integer>>> getLogs(LocalDateTime start, LocalDateTime end) {
+
+        Map<LocalDateTime, Map<String, Map<String, Integer>>> logs = new HashMap<LocalDateTime, Map<String, Map<String, Integer>>>();
+
+        for(Map.Entry<LocalDateTime, Map<String, Map<String, Integer>>> log: this.logData.entrySet()) {
+            if(log.getKey().isBefore(start)) continue;
+            if(log.getKey().isAfter(end)) break;
+            logs.put(log.getKey(), log.getValue());
+        }
+        return logs;
     }
 
     public Map<String, String> checkLevels() {
