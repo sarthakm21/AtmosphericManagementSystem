@@ -37,7 +37,7 @@ public class HomeScreen extends javax.swing.JFrame {
         place1.setText(places.get(1).name);
         place2.setText(places.get(2).name);
         add();
-        runWithInterval(5000);
+        runWithInterval(3000);
         homescreen.setVisible(true);
         displaylogs.setVisible(false);
     }
@@ -289,10 +289,10 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
-        startdate1 = new javax.swing.JTextField();
+        addEmail = new javax.swing.JTextField();
         getLogs2 = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
-        startdate2 = new javax.swing.JTextField();
+        removeEmail = new javax.swing.JTextField();
         back1 = new javax.swing.JButton();
         displayDateSpecificLogs = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -997,7 +997,7 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("Add Emails");
 
-        startdate1.setBorder(null);
+        addEmail.setBorder(null);
 
         getLogs2.setBackground(new java.awt.Color(94, 107, 107));
         getLogs2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1013,10 +1013,10 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Remove Emails");
 
-        startdate2.setBorder(null);
-        startdate2.addActionListener(new java.awt.event.ActionListener() {
+        removeEmail.setBorder(null);
+        removeEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startdate2ActionPerformed(evt);
+                removeEmailActionPerformed(evt);
             }
         });
 
@@ -1030,12 +1030,12 @@ public class HomeScreen extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(startdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(addEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(startdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(removeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addComponent(getLogs2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1047,11 +1047,11 @@ public class HomeScreen extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(removeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(getLogs2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(53, Short.MAX_VALUE))
@@ -1193,11 +1193,17 @@ public class HomeScreen extends javax.swing.JFrame {
 
     private void getLogs2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getLogs2ActionPerformed
         // TODO add your handling code here:
+        String add = addEmail.getText();
+        String remove = removeEmail.getText();
+        
+        if(remove.equals("") || add.equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this, "Please enter a valid input");
+        }
     }//GEN-LAST:event_getLogs2ActionPerformed
 
-    private void startdate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startdate2ActionPerformed
+    private void removeEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_startdate2ActionPerformed
+    }//GEN-LAST:event_removeEmailActionPerformed
 
     private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
         // TODO add your handling code here:
@@ -1224,6 +1230,7 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JLabel PM25_1;
     private javax.swing.JLabel PM25_2;
     private javax.swing.JLabel PM25_3;
+    private javax.swing.JTextField addEmail;
     private javax.swing.JLabel aqi2;
     private javax.swing.JLabel aqi3;
     private javax.swing.JLabel aqi_1;
@@ -1283,10 +1290,9 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JLabel place1aqi;
     private javax.swing.JLabel place2;
     private javax.swing.JLabel place2aqi;
+    private javax.swing.JTextField removeEmail;
     private javax.swing.JPanel settings;
     private com.toedter.calendar.JCalendar startDate;
-    private javax.swing.JTextField startdate1;
-    private javax.swing.JTextField startdate2;
     private javax.swing.JLabel temp_1;
     private javax.swing.JLabel temp_2;
     private javax.swing.JLabel temp_3;
