@@ -8,7 +8,7 @@ public class CentralManager {
     private Map<LocalDateTime, Map<String, Map<String, Integer>>> logData = new HashMap<LocalDateTime, Map<String, Map<String, Integer>>>();
 
     public CentralManager() {
-        Place p1 = new Place("Washroom", 25.431993, 81.770237);
+        Place p1 = new Place("Physics Lab", 25.431993, 81.770237);
         Place p2 = new Place("Lecture Room 1", 25.432424, 81.770116);
         Place p3 = new Place("HOD Room", 25.432150, 81.770746);
         this.places.add(p1);
@@ -36,6 +36,7 @@ public class CentralManager {
 
         Map<LocalDateTime, Map<String, Map<String, Integer>>> logs = new HashMap<LocalDateTime, Map<String, Map<String, Integer>>>();
 
+        //Getting log data according to the date entered.
         for(Map.Entry<LocalDateTime, Map<String, Map<String, Integer>>> log: this.logData.entrySet()) {
             if(log.getKey().isBefore(start)) continue;
             if(log.getKey().isAfter(end)) break;

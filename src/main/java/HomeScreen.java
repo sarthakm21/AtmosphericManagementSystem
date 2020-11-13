@@ -2,6 +2,7 @@ package airmanagement;
 
 import java.awt.Color;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 public class HomeScreen extends javax.swing.JFrame {
@@ -219,8 +220,6 @@ public class HomeScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         homescreen = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -281,14 +280,10 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        startdate = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        startmonth = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        enddate = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        endmonth = new javax.swing.JTextField();
         getLogs1 = new javax.swing.JButton();
+        startDate = new com.toedter.calendar.JCalendar();
+        endDate = new com.toedter.calendar.JCalendar();
         back = new javax.swing.JButton();
         settings = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -299,10 +294,10 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         startdate2 = new javax.swing.JTextField();
         back1 = new javax.swing.JButton();
-
-        jTextField1.setText("jTextField1");
-
-        jButton1.setText("jButton1");
+        displayDateSpecificLogs = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        displayLogsTextArea = new javax.swing.JTextArea();
+        back2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(229, 229, 229));
@@ -591,7 +586,7 @@ public class HomeScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(place0, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 239, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                 .addGap(15, 15, 15))
         );
 
@@ -873,12 +868,13 @@ public class HomeScreen extends javax.swing.JFrame {
                     .addGroup(homescreenLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(56, Short.MAX_VALUE))))
+                        .addContainerGap(128, Short.MAX_VALUE))))
         );
 
         getContentPane().add(homescreen, "card2");
 
         displaylogs.setBackground(new java.awt.Color(229, 229, 229));
+        displaylogs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -891,30 +887,9 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Start Date");
 
-        startdate.setBorder(null);
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Start Month");
-
-        startmonth.setBorder(null);
-
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("End Date");
-
-        enddate.setBorder(null);
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("End Month");
-
-        endmonth.setBorder(null);
-        endmonth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                endmonthActionPerformed(evt);
-            }
-        });
 
         getLogs1.setBackground(new java.awt.Color(94, 107, 107));
         getLogs1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -926,51 +901,52 @@ public class HomeScreen extends javax.swing.JFrame {
             }
         });
 
+        startDate.setWeekOfYearVisible(false);
+
+        endDate.setDecorationBackgroundColor(new java.awt.Color(153, 255, 255));
+        endDate.setRequestFocusEnabled(false);
+        endDate.setWeekOfYearVisible(false);
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(startdate, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startmonth, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(enddate, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(endmonth, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(113, 113, 113)
                 .addComponent(getLogs1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startdate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(startmonth, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(enddate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(endmonth, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)))
                 .addComponent(getLogs1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addGap(22, 22, 22))
         );
 
         back.setBackground(new java.awt.Color(94, 107, 107));
@@ -990,11 +966,11 @@ public class HomeScreen extends javax.swing.JFrame {
             .addGroup(displaylogsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156)
+                .addGap(87, 87, 87)
                 .addGroup(displaylogsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(292, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(273, Short.MAX_VALUE))
         );
         displaylogsLayout.setVerticalGroup(
             displaylogsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1004,7 +980,7 @@ public class HomeScreen extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                 .addGap(141, 141, 141))
         );
 
@@ -1113,10 +1089,48 @@ public class HomeScreen extends javax.swing.JFrame {
                     .addComponent(back1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(276, Short.MAX_VALUE))
         );
 
         getContentPane().add(settings, "card4");
+
+        displayLogsTextArea.setColumns(20);
+        displayLogsTextArea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        displayLogsTextArea.setRows(5);
+        jScrollPane1.setViewportView(displayLogsTextArea);
+
+        back2.setBackground(new java.awt.Color(94, 107, 107));
+        back2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        back2.setForeground(new java.awt.Color(255, 255, 255));
+        back2.setText("Go Back");
+        back2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout displayDateSpecificLogsLayout = new javax.swing.GroupLayout(displayDateSpecificLogs);
+        displayDateSpecificLogs.setLayout(displayDateSpecificLogsLayout);
+        displayDateSpecificLogsLayout.setHorizontalGroup(
+            displayDateSpecificLogsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayDateSpecificLogsLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(back2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+        displayDateSpecificLogsLayout.setVerticalGroup(
+            displayDateSpecificLogsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayDateSpecificLogsLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(displayDateSpecificLogsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(back2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(59, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(displayDateSpecificLogs, "card5");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1136,11 +1150,33 @@ public class HomeScreen extends javax.swing.JFrame {
 
     private void getLogs1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getLogs1ActionPerformed
         // TODO add your handling code here:
-        int startDate = Integer.parseInt(startdate.getText());
-        int startMonth = Integer.parseInt(startmonth.getText());
-        int endDate = Integer.parseInt(enddate.getText());
-        int endMonth = Integer.parseInt(endmonth.getText());
+        Date startDateFilter = startDate.getDate();
+        LocalDateTime startLocal = LocalDateTime.ofInstant(startDateFilter.toInstant(), ZoneId.systemDefault());
+
+        Date endDateFilter = endDate.getDate();
+        LocalDateTime endLocal = LocalDateTime.ofInstant(endDateFilter.toInstant(), ZoneId.systemDefault());
+        
+        endLocal = endLocal.withHour(0).withMinute(0).withSecond(0);
+        startLocal = startLocal.withHour(0).withMinute(0).withSecond(0);
+       
+        displaylogs.setVisible(false);
+        displayDateSpecificLogs.setVisible(true);
+        displayLogsTextArea.setText("");
         Map<LocalDateTime, Map<String, Map<String, Integer>>> logs = new HashMap<LocalDateTime, Map<String, Map<String, Integer>>>();
+        logs = this.centralManager.getLogs(startLocal, endLocal);
+        
+        for(Map.Entry<LocalDateTime, Map<String, Map<String, Integer>>> log: logs.entrySet()) {
+            LocalDateTime time = log.getKey();
+            for(Map.Entry<String, Map<String, Integer>> placeData: log.getValue().entrySet()){
+                   String place = (String)placeData.getKey();
+                    Map <String, Integer> sensor = (HashMap)placeData.getValue();
+                    for(Map.Entry j : sensor.entrySet()){
+                        String gas = (String)j.getKey();
+                        int value = (Integer)j.getValue();
+                        displayLogsTextArea.append(time + " : " + place + " : " + gas + " : " + value + "\n");   
+                    }
+            }
+        }
     }//GEN-LAST:event_getLogs1ActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
@@ -1148,11 +1184,6 @@ public class HomeScreen extends javax.swing.JFrame {
         homescreen.setVisible(true);
         displaylogs.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
-
-    private void endmonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endmonthActionPerformed
-        // TODO add your handling code here:
-        getLogs1.doClick();
-    }//GEN-LAST:event_endmonthActionPerformed
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
         // TODO add your handling code here:
@@ -1167,6 +1198,12 @@ public class HomeScreen extends javax.swing.JFrame {
     private void startdate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startdate2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_startdate2ActionPerformed
+
+    private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
+        // TODO add your handling code here:
+        displaylogs.setVisible(true);
+        displayDateSpecificLogs.setVisible(false);
+    }//GEN-LAST:event_back2ActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
@@ -1192,9 +1229,11 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JLabel aqi_1;
     private javax.swing.JButton back;
     private javax.swing.JButton back1;
+    private javax.swing.JButton back2;
+    private javax.swing.JPanel displayDateSpecificLogs;
+    private javax.swing.JTextArea displayLogsTextArea;
     private javax.swing.JPanel displaylogs;
-    private javax.swing.JTextField enddate;
-    private javax.swing.JTextField endmonth;
+    private com.toedter.calendar.JCalendar endDate;
     private javax.swing.JButton getLogs;
     private javax.swing.JButton getLogs1;
     private javax.swing.JButton getLogs2;
@@ -1202,14 +1241,11 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JLabel hum_1;
     private javax.swing.JLabel hum_2;
     private javax.swing.JLabel hum_3;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -1240,7 +1276,7 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel place0;
     private javax.swing.JLabel place0aqi;
     private javax.swing.JLabel place1;
@@ -1248,10 +1284,9 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JLabel place2;
     private javax.swing.JLabel place2aqi;
     private javax.swing.JPanel settings;
-    private javax.swing.JTextField startdate;
+    private com.toedter.calendar.JCalendar startDate;
     private javax.swing.JTextField startdate1;
     private javax.swing.JTextField startdate2;
-    private javax.swing.JTextField startmonth;
     private javax.swing.JLabel temp_1;
     private javax.swing.JLabel temp_2;
     private javax.swing.JLabel temp_3;
