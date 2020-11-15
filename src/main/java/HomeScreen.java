@@ -56,6 +56,9 @@ public class HomeScreen extends javax.swing.JFrame {
     
     
     public void add(){
+        String[] recipients = new String[2];
+        recipients[0] = "technology.shreyas@gmail.com";
+        recipients[1] = "iit2019117@iiita.ac.in";
         data = this.centralManager.getData(); 
         levels = this.centralManager.checkLevels(); 
         for(Map.Entry i : data.entrySet()){
@@ -162,9 +165,11 @@ public class HomeScreen extends javax.swing.JFrame {
                                     place0aqi.setForeground(new Color(171,126,40));
                                     break;
                                 case "High":
+                                    this.centralManager.sendMail(recipients, levelsPlace);
                                     place0aqi.setForeground(Color.red);
                                     break;
                                 case "Very High":
+                                    this.centralManager.sendMail(recipients, levelsPlace);
                                     place0aqi.setForeground(new Color(147,75,23));
                                     break;
                             }
@@ -183,9 +188,11 @@ public class HomeScreen extends javax.swing.JFrame {
                                     place1aqi.setForeground(new Color(171,126,40));
                                     break;
                                 case "High":
+                                    this.centralManager.sendMail(recipients, levelsPlace);
                                     place1aqi.setForeground(Color.red);
                                     break;
                                 case "Very High":
+                                    this.centralManager.sendMail(recipients, levelsPlace);
                                     place1aqi.setForeground(new Color(147,75,23));
                                     break;
                             }
@@ -204,9 +211,11 @@ public class HomeScreen extends javax.swing.JFrame {
                                     place2aqi.setForeground(new Color(171,126,40));
                                     break;
                                 case "High":
+                                    this.centralManager.sendMail(recipients, levelsPlace);
                                     place2aqi.setForeground(Color.red);
                                     break;
                                 case "Very High":
+                                    this.centralManager.sendMail(recipients, levelsPlace);
                                     place2aqi.setForeground(new Color(147,75,23));
                                     break;
                             }
