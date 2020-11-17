@@ -37,7 +37,7 @@ public class HomeScreen extends javax.swing.JFrame {
         place1.setText(places.get(1).name);
         place2.setText(places.get(2).name);
         add();
-        runWithInterval(3000);
+        runWithInterval(4000);
         homescreen.setVisible(true);
         displaylogs.setVisible(false);
     }
@@ -59,6 +59,8 @@ public class HomeScreen extends javax.swing.JFrame {
         String[] recipients = new String[2];
         recipients[0] = "technology.shreyas@gmail.com";
         recipients[1] = "iit2019117@iiita.ac.in";
+        boolean alert = false;
+        String alertPlace = "";
         data = this.centralManager.getData(); 
         levels = this.centralManager.checkLevels(); 
         for(Map.Entry i : data.entrySet()){
@@ -165,11 +167,13 @@ public class HomeScreen extends javax.swing.JFrame {
                                     place0aqi.setForeground(new Color(171,126,40));
                                     break;
                                 case "High":
-                                    this.centralManager.sendMail(recipients, levelsPlace);
+                                    alert = true;
+                                    alertPlace = levelsPlace;
                                     place0aqi.setForeground(Color.red);
                                     break;
                                 case "Very High":
-                                    this.centralManager.sendMail(recipients, levelsPlace);
+                                    alert = true;
+                                    alertPlace = levelsPlace;
                                     place0aqi.setForeground(new Color(147,75,23));
                                     break;
                             }
@@ -188,11 +192,13 @@ public class HomeScreen extends javax.swing.JFrame {
                                     place1aqi.setForeground(new Color(171,126,40));
                                     break;
                                 case "High":
-                                    this.centralManager.sendMail(recipients, levelsPlace);
+                                    alert = true;
+                                    alertPlace = levelsPlace;
                                     place1aqi.setForeground(Color.red);
                                     break;
                                 case "Very High":
-                                    this.centralManager.sendMail(recipients, levelsPlace);
+                                    alert = true;
+                                    alertPlace = levelsPlace;
                                     place1aqi.setForeground(new Color(147,75,23));
                                     break;
                             }
@@ -211,17 +217,22 @@ public class HomeScreen extends javax.swing.JFrame {
                                     place2aqi.setForeground(new Color(171,126,40));
                                     break;
                                 case "High":
-                                    this.centralManager.sendMail(recipients, levelsPlace);
+                                    alert = true;
+                                    alertPlace = levelsPlace;
                                     place2aqi.setForeground(Color.red);
                                     break;
                                 case "Very High":
-                                    this.centralManager.sendMail(recipients, levelsPlace);
+                                    alert = true;
+                                    alertPlace = levelsPlace;
                                     place2aqi.setForeground(new Color(147,75,23));
                                     break;
                             }
                     }               
                 }
             }
+        }
+        if(alert) {
+            this.centralManager.sendMail(recipients, alertPlace);
         }
     }
     
