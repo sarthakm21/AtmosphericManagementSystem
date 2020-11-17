@@ -59,48 +59,55 @@ public class CentralManager {
     }
     
     public void sendMail(String[] emails, String placename) {
-  
-      String sender = "atmosphericmanagementsystem@gmail.com";
-      String password = "atmospheric12#";
-      String host = "smtp.gmail.com"; 
-  
-      Properties properties = new Properties(); 
+      
+       Runnable task = () -> {
+            String sender = "atmosphericmanagementsystem@gmail.com";
+            String password = "atmospheric12#";
+            String host = "smtp.gmail.com"; 
 
-      properties.put("mail.smtp.host",host);  
-      properties.put("mail.smtp.auth", "true");
-      properties.put("mail.smtp.starttls.enable", "true");
-      // creating session object to get properties 
-      Session session = Session.getDefaultInstance(properties,  
-        new javax.mail.Authenticator() {  
-        protected PasswordAuthentication getPasswordAuthentication() {  
-            return new PasswordAuthentication(sender, password);  
-        }  
-        }); 
-  
-      try 
-      { 
-         // MimeMessage object. 
-         MimeMessage message = new MimeMessage(session); 
-  
-         // Set From Field: adding senders email to from field. 
-         message.setFrom(new InternetAddress(sender)); 
-         for(String email: emails) {
-         // Set To Field: adding recipient's email to from field. 
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email)); 
-         }
-         // Set Subject: subject of the email 
-         message.setSubject("High Pollutant Level Warning"); 
-  
-         // set body of the email. 
-         message.setText("WARNING: High Level of Pollutants has been detected at " + placename + "."); 
-  
-         // Send email. 
-         Transport.send(message); 
-         System.out.println("Mail successfully sent"); 
-      } 
-      catch (MessagingException mex)  
-      { 
-         mex.printStackTrace(); 
-      }
+            Properties properties = new Properties(); 
+
+            properties.put("mail.smtp.host",host);  
+            properties.put("mail.smtp.auth", "true");
+            properties.put("mail.smtp.starttls.enable", "true");
+            // creating session object to get properties 
+            Session session = Session.getDefaultInstance(properties,  
+              new javax.mail.Authenticator() {  
+              protected PasswordAuthentication getPasswordAuthentication() {  
+                  return new PasswordAuthentication(sender, password);  
+              }  
+              }); 
+
+            try 
+            { 
+               // MimeMessage object. 
+               MimeMessage message = new MimeMessage(session); 
+
+               // Set From Field: adding senders email to from field. 
+               message.setFrom(new InternetAddress(sender)); 
+               for(String email: emails) {
+               // Set To Field: adding recipient's email to from field. 
+                  message.addRecipient(Message.RecipientType.TO, new InternetAddress(email)); 
+               }
+               // Set Subject: subject of the email 
+               message.setSubject("High Pollutant Level Warning"); 
+
+               // set body of the email. 
+               message.setText("WARNING: High Level of Pollutants has been detected at " + placename + "."); 
+
+               // Send email. 
+               Transport.send(message); 
+               System.out.println("Mail successfully sent"); 
+            } 
+            catch (MessagingException mex)  
+            { 
+               mex.printStackTrace(); 
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.start();
+      
+      
     }
 }
