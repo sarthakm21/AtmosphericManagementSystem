@@ -58,7 +58,7 @@ public class CentralManager {
         return data;
     }
     
-    public void sendMail(String[] emails, String placename) {
+    public void sendMail(List<String> emails, String placename) {
       
        Runnable task = () -> {
             String sender = "atmosphericmanagementsystem@gmail.com";

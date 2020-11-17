@@ -10,6 +10,7 @@ public class HomeScreen extends javax.swing.JFrame {
     private Map<String, Map<String, Integer>> data = new HashMap<String, Map<String, Integer>>();
     private Map<String, String> levels = new HashMap<String, String>();
     private List<Place> places = new ArrayList<Place>();
+    private List<String> recipients = new ArrayList<String>();
     
     private void runWithInterval(long millis) {
         Runnable task = () -> {
@@ -32,10 +33,17 @@ public class HomeScreen extends javax.swing.JFrame {
         CentralManager cc3 = new CentralManager();
         this.centralManager = cc3;
         
+        recipients.add("technology.shreyas@gmail.com");
+        recipients.add("iit2019117@iiita.ac.in");
+        
         places = this.centralManager.getPlaces();
         place0.setText(places.get(0).name);
         place1.setText(places.get(1).name);
         place2.setText(places.get(2).name);
+        
+        for(int i=0; i< recipients.size() ; i++){
+            recipientsList.append(recipients.get(i) + "\n");
+        }
         add();
         runWithInterval(4000);
         homescreen.setVisible(true);
@@ -56,9 +64,6 @@ public class HomeScreen extends javax.swing.JFrame {
     
     
     public void add(){
-        String[] recipients = new String[2];
-        recipients[0] = "technology.shreyas@gmail.com";
-        recipients[1] = "iit2019117@iiita.ac.in";
         boolean alert = false;
         String alertPlace = "";
         data = this.centralManager.getData(); 
@@ -167,13 +172,17 @@ public class HomeScreen extends javax.swing.JFrame {
                                     place0aqi.setForeground(new Color(171,126,40));
                                     break;
                                 case "High":
-                                    alert = true;
-                                    alertPlace = levelsPlace;
+                                    if(send.isSelected() == true){
+                                        alert = true;
+                                        alertPlace = levelsPlace;
+                                    }
                                     place0aqi.setForeground(Color.red);
                                     break;
                                 case "Very High":
-                                    alert = true;
-                                    alertPlace = levelsPlace;
+                                    if(send.isSelected() == true){
+                                        alert = true;
+                                        alertPlace = levelsPlace;
+                                    }
                                     place0aqi.setForeground(new Color(147,75,23));
                                     break;
                             }
@@ -192,13 +201,17 @@ public class HomeScreen extends javax.swing.JFrame {
                                     place1aqi.setForeground(new Color(171,126,40));
                                     break;
                                 case "High":
-                                    alert = true;
-                                    alertPlace = levelsPlace;
+                                    if(send.isSelected() == true){
+                                        alert = true;
+                                        alertPlace = levelsPlace;
+                                    }
                                     place1aqi.setForeground(Color.red);
                                     break;
                                 case "Very High":
-                                    alert = true;
-                                    alertPlace = levelsPlace;
+                                    if(send.isSelected() == true){
+                                        alert = true;
+                                        alertPlace = levelsPlace;
+                                    }
                                     place1aqi.setForeground(new Color(147,75,23));
                                     break;
                             }
@@ -217,13 +230,17 @@ public class HomeScreen extends javax.swing.JFrame {
                                     place2aqi.setForeground(new Color(171,126,40));
                                     break;
                                 case "High":
-                                    alert = true;
-                                    alertPlace = levelsPlace;
+                                    if(send.isSelected() == true){
+                                        alert = true;
+                                        alertPlace = levelsPlace;
+                                    }
                                     place2aqi.setForeground(Color.red);
                                     break;
                                 case "Very High":
-                                    alert = true;
-                                    alertPlace = levelsPlace;
+                                    if(send.isSelected() == true){
+                                        alert = true;
+                                        alertPlace = levelsPlace;
+                                    }
                                     place2aqi.setForeground(new Color(147,75,23));
                                     break;
                             }
@@ -275,9 +292,6 @@ public class HomeScreen extends javax.swing.JFrame {
         place0aqi = new javax.swing.JLabel();
         place1aqi = new javax.swing.JLabel();
         place2aqi = new javax.swing.JLabel();
-        aqi3 = new javax.swing.JLabel();
-        aqi_1 = new javax.swing.JLabel();
-        aqi2 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         place2 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
@@ -309,11 +323,17 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
-        addEmail = new javax.swing.JTextField();
         getLogs2 = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
-        removeEmail = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        addEmail = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        removeEmail = new javax.swing.JTextArea();
         back1 = new javax.swing.JButton();
+        send = new javax.swing.JCheckBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        recipientsList = new javax.swing.JTextArea();
+        jLabel11 = new javax.swing.JLabel();
         displayDateSpecificLogs = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         displayLogsTextArea = new javax.swing.JTextArea();
@@ -622,12 +642,6 @@ public class HomeScreen extends javax.swing.JFrame {
         place2aqi.setForeground(new java.awt.Color(248, 124, 114));
         place2aqi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        aqi3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
-        aqi_1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
-        aqi2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
         jPanel10.setBackground(new java.awt.Color(248, 124, 114));
         jPanel10.setPreferredSize(new java.awt.Dimension(210, 232));
 
@@ -779,18 +793,11 @@ public class HomeScreen extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(aqi_1, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                    .addComponent(place0aqi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(place0aqi, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(116, 116, 116)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(aqi3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(aqi2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(place1aqi, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(114, 114, 114)
-                        .addComponent(place2aqi, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(place1aqi, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114)
+                .addComponent(place2aqi, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -814,15 +821,7 @@ public class HomeScreen extends javax.swing.JFrame {
                     .addComponent(place2aqi, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(place1aqi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(place0aqi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(aqi3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(aqi_1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(aqi2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(53, 53, 53))
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addContainerGap()
@@ -867,10 +866,10 @@ public class HomeScreen extends javax.swing.JFrame {
                     .addGroup(homescreenLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
-                .addGroup(homescreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(getLogs, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(homescreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getLogs, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
         homescreenLayout.setVerticalGroup(
@@ -881,14 +880,14 @@ public class HomeScreen extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGroup(homescreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homescreenLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(getLogs, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(168, 168, 168))
                     .addGroup(homescreenLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(128, Short.MAX_VALUE))))
+                        .addContainerGap(128, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homescreenLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(getLogs, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(179, 179, 179))))
         );
 
         getContentPane().add(homescreen, "card2");
@@ -990,7 +989,7 @@ public class HomeScreen extends javax.swing.JFrame {
                 .addGroup(displaylogsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         displaylogsLayout.setVerticalGroup(
             displaylogsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1017,8 +1016,6 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("Add Emails");
 
-        addEmail.setBorder(null);
-
         getLogs2.setBackground(new java.awt.Color(94, 107, 107));
         getLogs2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         getLogs2.setForeground(new java.awt.Color(255, 255, 255));
@@ -1033,33 +1030,34 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Remove Emails");
 
-        removeEmail.setBorder(null);
-        removeEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeEmailActionPerformed(evt);
-            }
-        });
+        addEmail.setColumns(20);
+        addEmail.setRows(5);
+        jScrollPane4.setViewportView(addEmail);
+
+        removeEmail.setColumns(20);
+        removeEmail.setRows(5);
+        jScrollPane5.setViewportView(removeEmail);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(removeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(getLogs2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(jScrollPane4)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(getLogs2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1067,14 +1065,14 @@ public class HomeScreen extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(removeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(getLogs2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         back1.setBackground(new java.awt.Color(94, 107, 107));
@@ -1087,29 +1085,64 @@ public class HomeScreen extends javax.swing.JFrame {
             }
         });
 
+        send.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        send.setText("Activate Notifications");
+        send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendActionPerformed(evt);
+            }
+        });
+
+        recipientsList.setEditable(false);
+        recipientsList.setColumns(20);
+        recipientsList.setRows(5);
+        jScrollPane2.setViewportView(recipientsList);
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Recipient List");
+
         javax.swing.GroupLayout settingsLayout = new javax.swing.GroupLayout(settings);
         settings.setLayout(settingsLayout);
         settingsLayout.setHorizontalGroup(
             settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(settingsLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(back1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156)
-                .addGroup(settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(273, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsLayout.createSequentialGroup()
+                .addGroup(settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(settingsLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, settingsLayout.createSequentialGroup()
+                        .addComponent(back1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addGroup(settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(settingsLayout.createSequentialGroup()
+                                .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(settingsLayout.createSequentialGroup()
+                                .addGroup(settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(settingsLayout.createSequentialGroup()
+                                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 14, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(100, 100, 100))
         );
         settingsLayout.setVerticalGroup(
             settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(settingsLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(10, 10, 10)
                 .addGroup(settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(back1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(276, Short.MAX_VALUE))
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(back1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addGap(44, 44, 44)
+                .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         getContentPane().add(settings, "card4");
@@ -1138,7 +1171,7 @@ public class HomeScreen extends javax.swing.JFrame {
                 .addComponent(back2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         displayDateSpecificLogsLayout.setVerticalGroup(
             displayDateSpecificLogsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1147,7 +1180,7 @@ public class HomeScreen extends javax.swing.JFrame {
                 .addGroup(displayDateSpecificLogsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(back2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         getContentPane().add(displayDateSpecificLogs, "card5");
@@ -1216,20 +1249,53 @@ public class HomeScreen extends javax.swing.JFrame {
         String add = addEmail.getText();
         String remove = removeEmail.getText();
         
-        if(remove.equals("") || add.equals("")){
+        if(remove.equals("") && add.equals("")){
             javax.swing.JOptionPane.showMessageDialog(this, "Please enter a valid input");
+            return;
         }
+        
+        if(!"".equals(add)){
+            List <String> addList = Arrays.asList(add.split(",", 100));            
+            for(String addItem : addList){
+                addItem = addItem.trim();
+                if(recipients.contains(addItem)) {
+                    continue;
+                } else
+                    recipients.add(addItem);
+            }
+        }
+        
+        if(!"".equals(remove)){
+            List <String> removeList = Arrays.asList(remove.split(",", 100));
+            for(String removeItem : removeList){
+                removeItem = removeItem.trim();
+                if(recipients.contains(removeItem))
+                    recipients.remove(removeItem);
+                else
+                    javax.swing.JOptionPane.showMessageDialog(this, removeItem + " does not exist");
+            }
+        }
+        
+        for(int i=0; i< recipients.size() ; i++){
+            if(i==0)
+            recipientsList.setText("");
+            System.out.println(recipients.get(i));
+            recipientsList.append(recipients.get(i) + "\n");
+        }
+        
+        addEmail.setText("");
+        removeEmail.setText("");
     }//GEN-LAST:event_getLogs2ActionPerformed
-
-    private void removeEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeEmailActionPerformed
 
     private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
         // TODO add your handling code here:
         displaylogs.setVisible(true);
         displayDateSpecificLogs.setVisible(false);
     }//GEN-LAST:event_back2ActionPerformed
+
+    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sendActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
@@ -1250,10 +1316,7 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JLabel PM25_1;
     private javax.swing.JLabel PM25_2;
     private javax.swing.JLabel PM25_3;
-    private javax.swing.JTextField addEmail;
-    private javax.swing.JLabel aqi2;
-    private javax.swing.JLabel aqi3;
-    private javax.swing.JLabel aqi_1;
+    private javax.swing.JTextArea addEmail;
     private javax.swing.JButton back;
     private javax.swing.JButton back1;
     private javax.swing.JButton back2;
@@ -1271,6 +1334,7 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
@@ -1304,13 +1368,18 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel place0;
     private javax.swing.JLabel place0aqi;
     private javax.swing.JLabel place1;
     private javax.swing.JLabel place1aqi;
     private javax.swing.JLabel place2;
     private javax.swing.JLabel place2aqi;
-    private javax.swing.JTextField removeEmail;
+    private javax.swing.JTextArea recipientsList;
+    private javax.swing.JTextArea removeEmail;
+    private javax.swing.JCheckBox send;
     private javax.swing.JPanel settings;
     private com.toedter.calendar.JCalendar startDate;
     private javax.swing.JLabel temp_1;
