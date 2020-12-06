@@ -1,5 +1,10 @@
 # ATMOSPHERIC MANAGEMENT SYSTEM
 
+## Made by
+- [Sarthak Maheshwari](https://github.com/sarthakm21) - **Frontend**
+- [Shreyas Gupta](https://github.com/sggts04) - **Backend**
+- [Ankit Gupta](https://github.com/ankit4284) - **Documentation**
+- [Aryan Gupta](https://github.com/ag090118) - **Documentation**
 ## Problem Statement
 To develop a GUI enabled air quality management system for IIITA campus. The
 system should be able to monitor the level of hazardous gases present in the
